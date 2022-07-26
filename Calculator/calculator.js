@@ -44,11 +44,11 @@ keys.addEventListener("click", e => {
    }
    
    if(action === "decimal"){
-    if(opPressed==""){
+    if(opPressed=="" &&!number1.includes(".") && number1!=""){
       number1 = number1 + ".";
       result.textContent = number1;
     }
-    else{
+    else if(!number2.includes(".") && number2!=""){
       number2 = number2 + "."
       result.textContent = result.textContent + "."
     } 
@@ -63,21 +63,27 @@ keys.addEventListener("click", e => {
    
    if(action ==="calculate")
    {
-     if(opPressed==="add"){
-        number1 = String(parseFloat(number1)+parseFloat(number2)); 
-     }
-     if(opPressed==="substract"){
-        number1 = String(parseFloat(number1)-parseFloat(number2)); 
-     }
-     if(opPressed==="multiply"){
-        number1 = String(parseFloat(number1)*parseFloat(number2)); 
-     }
-     if(opPressed==="divide"){
-        number1 = String(parseFloat(number1)/parseFloat(number2)); 
-     }
+     number1 = calculate(number1,number2,opPressed);
      result.textContent = number1;
      opPressed = "";
      number2="";
    }
  }
 })
+
+function calculate (number1, number2, action){
+  if(action==="add"){
+    return (String(parseFloat(number1)+parseFloat(number2)));
+  }
+  if(action==="substract"){
+    return (String(parseFloat(number1)-parseFloat(number2)));
+  }
+  if(action==="multiply"){
+    return (String(parseFloat(number1)*parseFloat(number2)));
+  }
+  if(action==="divide"){
+    return (String(parseFloat(number1)/parseFloat(number2)));
+  }
+  
+  return "";
+}
